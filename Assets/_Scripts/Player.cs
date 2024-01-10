@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Creature
 {
     [Header("Player Settings")]
     [SerializeField] float speed;
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
         //Keyboard Controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            playerRigid.velocity = new Vector2(-speed * Time.deltaTime, playerRigid.velocity.y);
+            playerRigid.velocity = new Vector2(-speed, playerRigid.velocity.y);
             playerSprite.flipX = false;
 
             if (isGrounded)
@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow))
         {
-            playerRigid.velocity = Vector2.zero;
+            playerRigid.velocity = new Vector2(0, playerRigid.velocity.y);
 
             if (isGrounded)
             {
@@ -72,7 +72,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            playerRigid.velocity = new Vector2(speed * Time.deltaTime, playerRigid.velocity.y);
+            playerRigid.velocity = new Vector2(speed, playerRigid.velocity.y);
             playerSprite.flipX = true;
 
             if (isGrounded)
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow))
         {
-            playerRigid.velocity = Vector2.zero;
+            playerRigid.velocity = new Vector2(0, playerRigid.velocity.y);
 
             if (isGrounded)
             {
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         {
             if (isGrounded)
             {
-                playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpForce * Time.deltaTime);
+                playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpForce);
 
                 isJumping = true;
                 isWalking = false;
@@ -127,6 +127,11 @@ public class Player : MonoBehaviour
             isJumping = false;
 
             UpdateAnims();
+        }
+
+        if (obj.gameObject.CompareTag("Diamond"))
+        {
+            Destroy(obj.gameObject);
         }
     }
 
