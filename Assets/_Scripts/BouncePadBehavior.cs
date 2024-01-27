@@ -27,7 +27,7 @@ public class BouncePadBehavior : MonoBehaviour
     {
         if (obj.gameObject.CompareTag("Player"))
         {
-            bounceSprite.sprite = bouncePadPopped;
+            bounceSprite.sprite = bouncePadClose;
         }
     }
 }

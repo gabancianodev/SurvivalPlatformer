@@ -5,6 +5,7 @@ using UnityEngine;
 public class Creature : MonoBehaviour
 {
     [Header("Creature Settings")]
-    [SerializeField] float health;
+    public float health;
+    public float movementSpeed;
 
 }

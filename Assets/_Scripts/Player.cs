@@ -5,7 +5,6 @@ using UnityEngine;
 public class Player : Creature
 {
     [Header("Player Settings")]
-    [SerializeField] float speed;
     [SerializeField] float jumpForce;
     [Space]
     [SerializeField] bool isIdle;
@@ -44,7 +43,7 @@ public class Player : Creature
         //Keyboard Controls
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            playerRigid.velocity = new Vector2(-speed, playerRigid.velocity.y);
+            playerRigid.velocity = new Vector2(-movementSpeed, playerRigid.velocity.y);
             playerSprite.flipX = false;
 
             if (isGrounded)
@@ -72,7 +71,7 @@ public class Player : Creature
 
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            playerRigid.velocity = new Vector2(speed, playerRigid.velocity.y);
+            playerRigid.velocity = new Vector2(movementSpeed, playerRigid.velocity.y);
             playerSprite.flipX = true;
 
             if (isGrounded)
